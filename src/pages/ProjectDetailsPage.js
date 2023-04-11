@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom';
-import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import AddTask from "../components/AddTask";
 import TaskCard from "../components/TaskCard";
 
-
+import projectsService from "../services/projects.service";
 
 
 
@@ -12,26 +11,32 @@ function ProjectDetailsPage (props) {
   const [project, setProject] = useState(null);
   const { projectId } = useParams();
   
+  
   const getProject = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`)
+
+    // axios
+    //   .get(
+    //     `${API_URL}/api/projects/${projectId}`,
+    //     { headers: { Authorization: `Bearer ${storedToken}` } }
+    //   )
+
+    projectsService.getProject(projectId)    
       .then((response) => {
-      	const oneProject = response.data;
-      	setProject(oneProject);
-    	})
+        const oneProject = response.data;
+        setProject(oneProject);
+      })
       .catch((error) => console.log(error));
   };
   
   
   useEffect(()=> {
     getProject();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [] );
 
   
   return (
     <div className="ProjectDetails">
-    
       {project && (
         <>
           <h1>{project.title}</h1>
