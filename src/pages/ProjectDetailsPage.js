@@ -5,7 +5,7 @@ import AddTask from "../components/AddTask";
 import TaskCard from "../components/TaskCard";
 
 
-const API_URL = "http://localhost:5005";
+
 
 
 function ProjectDetailsPage (props) {
@@ -14,7 +14,7 @@ function ProjectDetailsPage (props) {
   
   const getProject = () => {
     axios
-      .get(`${API_URL}/api/projects/${projectId}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/projects/${projectId}`)
       .then((response) => {
       	const oneProject = response.data;
       	setProject(oneProject);

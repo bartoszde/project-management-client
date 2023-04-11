@@ -4,14 +4,14 @@ import axios from "axios";
 import ProjectCard from "./../components/ProjectCard";
 import AddProject from "../components/AddProject";
 
-const API_URL = "http://localhost:5005";
+
 
 function ProjectListPage() {
   const [projects, setProjects] = useState([]);
 
   const getAllProjects = () => {
     axios
-      .get(`${API_URL}/api/projects`)
+      .get(`${process.env.REACT_APP_API_URL}/api/projects`)
       .then((response) => setProjects(response.data))
       .catch((error) => console.log(error));
   };
