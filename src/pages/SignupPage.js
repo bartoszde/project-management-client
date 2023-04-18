@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const REACT_APP_SERVER_URL = "http://localhost:5005";
+const REACT_APP_API_URL = "http://localhost:5005";
 
 
 function SignupPage(props) {
@@ -26,7 +26,7 @@ function SignupPage(props) {
     // Make an axios request to the API
     // If the POST request is a successful redirect to the login page
     // If the request resolves with an error, set the error message in the state
-    axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, requestBody)
+    axios.post(`${REACT_APP_API_URL}/auth/signup`, requestBody)
       .then((response) => {
         navigate('/login');
       })
